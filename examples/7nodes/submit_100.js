@@ -1,7 +1,3 @@
-process.argv.forEach(function (val, index, array) {
-  console.log(index + ': ' + val);
-});
-
 web3.eth.defaultAccount = web3.eth.accounts[0]
 
 var s1=eth.getTransaction("0x7e2593dceea2d69c763c07b2a61a998a9e5d27200afcd9adf700a33ed7fd4201")
@@ -14,9 +10,10 @@ var abi =[{"constant":false,"inputs":[{"name":"price","type":"uint256"}],"name":
 
 var contract=eth.contract(abi).at(s2.contractAddress)
 
-console.log(contract.getInfo())
-console.log(contract.bid(100))
-console.log(contract.findWinnerAddress())
-console.log(contract.findWinnerBid())
+//console.log(contract.getInfo())
+console.log("submit bid: ", contract.bid(100))
+console.log("winner: ", contract.findWinnerAddress())
+console.log("with bid: ", contract.findWinnerBid())
+
 
 
