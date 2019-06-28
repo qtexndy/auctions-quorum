@@ -50,6 +50,11 @@ When the auctions ends, node 1 publishes all bids to PublicVickreyAuction and ev
 3. Performance of Quorum seems to be good, even I didn't seriously test it. 
 
 4. Programming tools can be improved, especially tools for Solidity, e.g. code assistance doesn't work for Solidity. Given that it is a strong-type language, code assistance should be supported relatively easily.
+
+5. More on development/deploying environment.
+ * The typical process of deploying a new contract looks like this: first you deploy the contract and get a transaction hash, then you need to find the contract address through this hash. The contract address is always required if you need to interact with it, but you will not be able to get it synchronously right after deploying the contract. So an asynchronously API to wait for the transaction to finish and return the address, and then continue will be REALLY helpful. It will saves a lot manual work when development and testing a new contract.
+ 
+ * The above asynchronous API should work for both public and private contracts.
  
 
 
