@@ -30,10 +30,14 @@ To submit a bid of 100, a node, say node 3,  runs sh command
 Unlike English auctions, Vickrey auctions are sealed auctions where no one knows other's bid. This is implemented using
 Quorum's private transactions. 
 
-An administration node, say node 1, first creates a private contract PrivateVickreyAuction.sol with every other nodes. Then other nodes submit their
+An administration node, say node 1, first creates a private contract [PrivateVickreyAuction.sol](examples/7nodes/PrivateVickreyAuction.sol) with every other nodes. Then other nodes submit their
 bids to node 1. All the bids are privates, so every node only knows its own bid, not others.
 
-Upon receiving a bid, node 1 publishes the hash of the bid to a public contract PublicVickeryAucation.sol (how to do that? Is it possible to call a deployed public contract from a private contract?). 
+Upon receiving a bid, node 1 publishes the hash of the bid to a public contract [PublicVickeryAucation.sol](examples/7nodes/PublicVickreyAuction.sol) (how to do that? Is it possible to call a deployed public contract from a private contract?). 
+
+* If both contracts are public, one can call another in remix development mode. But somehow I couldn't get it to work after deploying both contracts to 7 nodes? (Anyone has any idea why?)
+
+* Will deploy the private contract into private mode after solving the above issue.
 
 When the auctions ends, node 1 publishes all bids to PublicVickreyAuction and everyone can call "findWinner()" to verify the auction is valid.  
 
