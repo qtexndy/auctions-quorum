@@ -27,15 +27,15 @@ To submit a bid of 100, a node, say node 3,  runs sh command
 
 
 ## Vickrey Auction
-Unlike English auctions, Vickrey auctions are sealed auctions where no one knows other's bid. This is implemented using
+Unlike English auctions, Vickrey auctions are sealed auctions where no one knows others' bid. This is implemented using
 Quorum's private transactions. 
 
-An administration node, say node 1, first creates a private contract [PrivateVickreyAuction.sol](examples/7nodes/PrivateVickreyAuction.sol) with every other nodes. Then other nodes submit their
+An administration node, say node 1, creates a private contract [PrivateVickreyAuction.sol](examples/7nodes/PrivateVickreyAuction.sol) with every other nodes. Then other nodes submit their
 bids to node 1. All the bids are privates, so every node only knows its own bid, not others.
 
 Upon receiving a bid, node 1 publishes the hash of the bid to a public contract [PublicVickeryAucation.sol](examples/7nodes/PublicVickreyAuction.sol) (Is it possible to call a deployed public contract from a private contract?). 
 
-* If both contracts are public, one can call another in remix IDE. But somehow I couldn't get it to work after deploying both contracts to 7 nodes? (Anyone has any idea why?)
+* If both contracts are public, one can call another in the remix IDE. But somehow I couldn't get it to work after deploying both contracts to 7 nodes? (Anyone has any idea why?)
 
 * Will deploy the private contract into private mode after solving the above issue.
 
@@ -49,10 +49,10 @@ When the auctions ends, node 1 publishes all bids to PublicVickreyAuction and ev
 
 3. Performance of Quorum seems to be good, even I didn't seriously test it. 
 
-4. Programming tools can be improved, especially tools for Solidity, e.g. code assistance doesn't work for Solidity. Given that it is a strong-type language, code assistance should be supported relatively easily.
+4. Programming tools can be improved, especially tools for Solidity, e.g. code assistance doesn't work in IDE. Given that solidity is a strong-typed language, code assistance should be implemented relatively easily.
 
 5. More on development/deploying environment.
- * The typical process of deploying a new contract looks like this: first you deploy the contract and get a transaction hash, then you need to find the contract address through this hash. The contract address is always required if you need to interact with it, but you will not be able to get it synchronously right after deploying the contract. So an asynchronously API to wait for the transaction to finish and return the address, and then continue the work will be REALLY helpful. It will save a lot manual work when development and testing a new contract.
+ * The typical process of deploying a new contract looks like this: first you deploy the contract and get a transaction hash, then you need to find the contract address through this hash. The contract address is always required if you need to interact with it, but you will not be able to get it synchronously right after deploying the contract. So an asynchronously API to wait for the transaction to finish and then return the address will be REALLY helpful. It will save a lot manual work when development and testing a new contract.
  
  * The above asynchronous API should work for both public and private contracts.
  
